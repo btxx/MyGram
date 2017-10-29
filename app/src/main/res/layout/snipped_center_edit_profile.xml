@@ -1,0 +1,257 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/changeProfilePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_photo"
+                android:layout_centerHorizontal="true"
+                android:text="@string/change_foto"
+                android:textColor="@color/link_blue"
+                android:textSize="16dp" />
+
+
+            <!--Mostrar o username-->
+            <RelativeLayout
+                android:id="@+id/relLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/changeProfilePhoto"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_username"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <TextView
+                    android:id="@+id/tvNome"
+                    android:text="@string/hint_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_below="@id/tvNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/username"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:hint="@string/hint_username"
+                    android:inputType="textNoSuggestions"/>
+
+            </RelativeLayout>
+
+
+                <!--Mostrar o nome-->
+                <RelativeLayout
+                    android:id="@+id/relLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/relLayout1"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/grey_border_bottom">
+
+                    <!--<ImageView-->
+                        <!--android:layout_width="35dp"-->
+                        <!--android:layout_height="35dp"-->
+                        <!--android:src="@drawable/ic_desplay_name"-->
+                        <!--android:layout_centerVertical="true"/>-->
+
+                    <TextView
+                        android:id="@+id/tvDesplayName"
+                        android:text="@string/desplay_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:layout_below="@id/tvDesplayName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/display_name"
+                        android:layout_centerVertical="true"
+                        android:hint="@string/desplay_name"
+                        android:background="@null"
+                        android:inputType="textNoSuggestions"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/relLayout2"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_web"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <TextView
+                    android:id="@+id/tvWebSite"
+                    android:text="@string/website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_below="@id/tvWebSite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/website"
+                    android:layout_centerVertical="true"
+                    android:hint="@string/website"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/relLayout3"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_description"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <TextView
+                    android:id="@+id/tvDecription"
+                    android:text="@string/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_below="@id/tvDecription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/description"
+                    android:layout_centerVertical="true"
+                    android:hint="@string/description"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions"/>
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/textPrivateInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/private_information"
+                android:layout_below="@+id/relLayout4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/black"
+                android:background="@drawable/grey_border_bottom"/>
+
+            <RelativeLayout
+                android:id="@+id/relLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/textPrivateInfo"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_email"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:text="@string/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_below="@id/tvEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/email"
+                    android:layout_centerVertical="true"
+                    android:hint="Email"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions"/>
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/relLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/relLayout5"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:src="@drawable/ic_phone"-->
+                    <!--android:layout_centerVertical="true"/>-->
+
+                <TextView
+                    android:id="@+id/tvPhoneNumber"
+                    android:text="@string/phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_below="@+id/tvPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phoneNumber"
+                    android:layout_centerVertical="true"
+                    android:hint="@string/phone_number"
+                    android:background="@null"
+                    android:inputType="textNoSuggestions"/>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</merge>

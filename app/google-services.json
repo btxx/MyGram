@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "348952675020",
+    "firebase_url": "https://myinstra-c5951.firebaseio.com",
+    "project_id": "myinstra-c5951",
+    "storage_bucket": "myinstra-c5951.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348952675020:android:2f43fa6a994f2a30",
+        "android_client_info": {
+          "package_name": "bruno.varela.tavares.mygram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348952675020-5p39ls9k29gsl89gfo97fl7tnttgt545.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bruno.varela.tavares.mygram",
+            "certificate_hash": "f258e4ef4d56973e42dde39d36f42790351cb129"
+          }
+        },
+        {
+          "client_id": "348952675020-2tkia9hsu96j1hs9e371poa9oqenl07t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcwmLbsvJWkJm7dOjxgJdEhxwYsjGQVQU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348952675020-2tkia9hsu96j1hs9e371poa9oqenl07t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

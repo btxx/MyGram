@@ -1,0 +1,71 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/white_grey_border_bottom">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/profileToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/camara"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp">
+
+                <ImageView
+                    android:src="@drawable/ic_camara"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:text="Bruno Tavares"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/myGramImageView"
+                    android:scaleType="centerInside"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/mygram"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="78dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/username" />
+
+            <RelativeLayout
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/arrow"
+                android:layout_width="40dp"
+                android:layout_height="35dp">
+
+                <ImageView
+
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_messages"/>
+
+            </RelativeLayout>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</merge>
