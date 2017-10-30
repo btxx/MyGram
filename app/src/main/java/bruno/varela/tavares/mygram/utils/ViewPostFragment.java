@@ -91,6 +91,7 @@ public class ViewPostFragment extends Fragment {
     private Boolean mLikedByCurrentUser;
     private StringBuilder mUsers;
     private User mCurrentUser;
+    private Context mContext;
 
 
     public  ViewPostFragment(){
@@ -118,6 +119,7 @@ public class ViewPostFragment extends Fragment {
         mComment = (ImageView) view.findViewById(R.id.speech_bubble);
         mComments = (TextView) view.findViewById(R.id.image_comments_link);
         Log.d(TAG, "onCreateView: ViewPostFragment");
+        mContext = getActivity();
 
 
         //Animação do coração
@@ -144,8 +146,8 @@ public class ViewPostFragment extends Fragment {
 
 
             Query query = FirebaseDatabase.getInstance().getReference()
-                    .child(getString(R.string.dbname_photos))
-                    .orderByChild(getString(R.string.field_photo_id))
+                    .child(mContext.getString(R.string.dbname_photos))
+                    .orderByChild(mContext.getString(R.string.field_photo_id))
                     .equalTo(photo_id);
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -156,16 +158,16 @@ public class ViewPostFragment extends Fragment {
                         Photo photo = new Photo();
                         Map<String, Object> objectMap = (HashMap<String,Object>) singleSnapshot.getValue();
 
-                        photo.setCaption(objectMap.get(getString(R.string.field_caption)).toString());
-                        photo.setTags(objectMap.get(getString(R.string.field_tags)).toString());
-                        photo.setPhoto_id(objectMap.get(getString(R.string.field_photo_id)).toString());
-                        photo.setUser_id(objectMap.get(getString(R.string.field_user_id)).toString());
-                        photo.setDate_created(objectMap.get(getString(R.string.field_date_created)).toString());
-                        photo.setImage_path(objectMap.get(getString(R.string.field_image_path)).toString());
+                        photo.setCaption(objectMap.get(mContext.getString(R.string.field_caption)).toString());
+                        photo.setTags(objectMap.get(mContext.getString(R.string.field_tags)).toString());
+                        photo.setPhoto_id(objectMap.get(mContext.getString(R.string.field_photo_id)).toString());
+                        photo.setUser_id(objectMap.get(mContext.getString(R.string.field_user_id)).toString());
+                        photo.setDate_created(objectMap.get(mContext.getString(R.string.field_date_created)).toString());
+                        photo.setImage_path(objectMap.get(mContext.getString(R.string.field_image_path)).toString());
 
 
                         List<Comment> comments = new ArrayList<Comment>();
-                        for (DataSnapshot dSnapshot : singleSnapshot.child(getString(R.string.field_comments)).getChildren()){
+                        for (DataSnapshot dSnapshot : singleSnapshot.child(mContext.getString(R.string.field_comments)).getChildren()){
                             Comment comment = new Comment();
                             comment.setUser_id(dSnapshot.getValue(Comment.class).getUser_id());
                             comment.setComment(dSnapshot.getValue(Comment.class).getComment());
@@ -229,9 +231,9 @@ public class ViewPostFragment extends Fragment {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference
-                .child(getString(R.string.dbname_photos))
+                .child(mContext.getString(R.string.dbname_photos))
                 .child(mPhoto.getPhoto_id())
-                .child(getString(R.string.field_likes));
+                .child(mContext.getString(R.string.field_likes));
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -243,8 +245,8 @@ public class ViewPostFragment extends Fragment {
                     /// VIDEO 72  9.08m
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
                     Query query = reference
-                            .child(getString(R.string.dbname_users))
-                            .orderByChild(getString(R.string.field_user_id))
+                            .child(mContext.getString(R.string.dbname_users))
+                            .orderByChild(mContext.getString(R.string.field_user_id))
                             .equalTo(singleSnapshot.getValue(Like.class).getUser_id());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -275,29 +277,29 @@ public class ViewPostFragment extends Fragment {
                             int length = splitUsers.length;
 
                             if (length == 1){
-                                mLikesString = getString(R.string.liked_by) + " " + splitUsers[0];
+                                mLikesString = mContext.getString(R.string.liked_by) + " " + splitUsers[0];
 
                             }else if (length == 2){
-                                mLikesString = getString(R.string.liked_by) + " " + splitUsers[0] + " "
+                                mLikesString = mContext.getString(R.string.liked_by) + " " + splitUsers[0] + " "
                                         + getString(R.string.and)+  " " + splitUsers[1];
 
                             }else if (length == 3){
-                                mLikesString = getString(R.string.liked_by) + " " + splitUsers[0] +
+                                mLikesString = mContext.getString(R.string.liked_by) + " " + splitUsers[0] +
                                         ", " + splitUsers[1] +
                                 " "   + getString(R.string.and)+  " "  + splitUsers[2];
 
                             }else if (length == 4){
-                                mLikesString = getString(R.string.liked_by) + " " + splitUsers[0] +
+                                mLikesString = mContext.getString(R.string.liked_by) + " " + splitUsers[0] +
                                         ", " + splitUsers[1] +
                                         ", " + splitUsers[2] +  " "
-                                        + getString(R.string.and)+  " "  + splitUsers[3];
+                                        + mContext.getString(R.string.and)+  " "  + splitUsers[3];
 
 
                             }else if (length > 4){
                                 mLikesString = " Liked by " + splitUsers[0] +
                                         ", " + splitUsers[1] +
                                         ", " + splitUsers[2]  +  " "
-                                        + getString(R.string.and)+  " "  + (splitUsers.length - 3) + " " + getString(R.string.others);
+                                        + mContext.getString(R.string.and)+  " "  + (splitUsers.length - 3) + " " + mContext.getString(R.string.others);
 
                             }
 
@@ -336,7 +338,7 @@ public class ViewPostFragment extends Fragment {
     private void getCurrentUser(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference
-                .child(getString(R.string.dbname_users))
+                .child(mContext.getString(R.string.dbname_users))
                 .orderByChild(getString(R.string.field_user_id))
                 .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
         Log.d(TAG, "getPhotoDetails:  meu ");
@@ -376,9 +378,9 @@ public class ViewPostFragment extends Fragment {
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
             Query query = reference
-                    .child(getString(R.string.dbname_photos))
+                    .child(mContext.getString(R.string.dbname_photos))
                     .child(mPhoto.getPhoto_id())
-                    .child(getString(R.string.field_likes));
+                    .child(mContext.getString(R.string.field_likes));
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -395,16 +397,16 @@ public class ViewPostFragment extends Fragment {
 
 
 
-                            myRef.child(getString(R.string.dbname_photos))
+                            myRef.child(mContext.getString(R.string.dbname_photos))
                                     .child(mPhoto.getPhoto_id())
                                     .child(getString(R.string.field_likes))
                                     .child(keyID)
                                     .removeValue();
 
-                            myRef.child(getString(R.string.dbname_user_photos))
+                            myRef.child(mContext.getString(R.string.dbname_user_photos))
                                     .child(mPhoto.getUser_id())
                                     .child(mPhoto.getPhoto_id())
-                                    .child(getString(R.string.field_likes))
+                                    .child(mContext.getString(R.string.field_likes))
                                     .child(keyID)
                                     .removeValue();
 
@@ -448,16 +450,16 @@ public class ViewPostFragment extends Fragment {
         like.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
 
-        myRef.child(getString(R.string.dbname_photos))
+        myRef.child(mContext.getString(R.string.dbname_photos))
                 .child(mPhoto.getPhoto_id())
                 .child(getString(R.string.field_likes))
                 .child(newLikeId)
                 .setValue(like);
 
-        myRef.child(getString(R.string.dbname_user_photos))
+        myRef.child(mContext.getString(R.string.dbname_user_photos))
                 .child(mPhoto.getUser_id())
                 .child(mPhoto.getPhoto_id())
-                .child(getString(R.string.field_likes))
+                .child(mContext.getString(R.string.field_likes))
                 .child(newLikeId)
                 .setValue(like);
 
@@ -475,8 +477,8 @@ public class ViewPostFragment extends Fragment {
         Log.d(TAG, "getPhotoDetails: ");
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference
-                .child(getString(R.string.dbname_user_account_settings))
-                .orderByChild(getString(R.string.field_user_id))
+                .child(mContext.getString(R.string.dbname_user_account_settings))
+                .orderByChild(mContext.getString(R.string.field_user_id))
                 .equalTo(mPhoto.getUser_id());
         Log.d(TAG, "getPhotoDetails:  meu ");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -504,7 +506,7 @@ public class ViewPostFragment extends Fragment {
     private void setupWidgets(){
         String timestampDiff = getTimestampDifference();
         if (!timestampDiff.equals("0")){
-            mTimestamp.setText(timestampDiff +  " " + getString(R.string.time_days_ago));
+            mTimestamp.setText(timestampDiff +  " " + mContext.getString(R.string.time_days_ago));
         }else {
             mTimestamp.setText(R.string.time_today);
         }
@@ -527,7 +529,7 @@ public class ViewPostFragment extends Fragment {
 
 
         if (mPhoto.getComments().size() > 0){
-           mComments.setText(getString(R.string.view_all_commens_number) +  " " +  mPhoto.getComments().size() +  " " + getString(R.string.comments_number));
+           mComments.setText(mContext.getString(R.string.view_all_commens_number) +  " " +  mPhoto.getComments().size() +  " " + mContext.getString(R.string.comments_number));
         }else {
             mComments.setText("");
         }
@@ -620,7 +622,7 @@ public class ViewPostFragment extends Fragment {
 
         Bundle  bundle = this.getArguments();
         if (bundle != null){
-            return  bundle.getParcelable(getString(R.string.photo));
+            return  bundle.getParcelable(mContext.getString(R.string.photo));
         }else {
             return null;
         }
@@ -636,7 +638,7 @@ public class ViewPostFragment extends Fragment {
 
         Bundle  bundle = this.getArguments();
         if (bundle != null){
-            return  bundle.getInt(getString(R.string.activity_number));
+            return  bundle.getInt(mContext.getString(R.string.activity_number));
         }else {
             return 0;
         }

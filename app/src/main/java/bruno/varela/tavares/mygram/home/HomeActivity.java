@@ -8,21 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import bruno.varela.tavares.mygram.R;
 import bruno.varela.tavares.mygram.login.LoginActivity;
 import bruno.varela.tavares.mygram.models.Photo;
-import bruno.varela.tavares.mygram.utils.BottomNavigationViewHelper;
 import bruno.varela.tavares.mygram.utils.FirebaseMethods;
 import bruno.varela.tavares.mygram.utils.MainFeedListAdapter;
 import bruno.varela.tavares.mygram.utils.SectionsPagerAdapter;
@@ -61,7 +57,7 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
         setupFireBaseAuth();
 
         initImageLoader();
-        setUpBottomNavigationView();
+    //    setUpBottomNavigationView();
         setupViewPager();
 
         String hotas = firebaseMethods.getTimestamp();
@@ -173,15 +169,15 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
     *
     *Botões de baixo
     * */
-    private  void setUpBottomNavigationView(){
-        Log.d(TAG, "setUpBottomNavigationView: HomeActivity");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext,this ,bottomNavigationViewEx);
-        Menu menu = bottomNavigationViewEx.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
-    }
+//    private  void setUpBottomNavigationView(){
+//        Log.d(TAG, "setUpBottomNavigationView: HomeActivity");
+//        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+//        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewHelper.enableNavigation(mContext,this ,bottomNavigationViewEx);
+//        Menu menu = bottomNavigationViewEx.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
+//    }
 
     /**
      * *********************************************** FireBase**************************************

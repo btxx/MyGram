@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +31,7 @@ import java.util.Map;
 import bruno.varela.tavares.mygram.R;
 import bruno.varela.tavares.mygram.models.Comment;
 import bruno.varela.tavares.mygram.models.Photo;
+import bruno.varela.tavares.mygram.utils.BottomNavigationViewHelper;
 import bruno.varela.tavares.mygram.utils.MainFeedListAdapter;
 
 /**
@@ -49,7 +53,9 @@ public class HomeFragment extends Fragment {
     private ListView mListView;
     private MainFeedListAdapter mAdapter;
     private int mResults;
+    private BottomNavigationViewEx bottomNavigationViewEx;
 
+    public static final int ACTIVITY_NUM = 0;
 
 
 
@@ -64,7 +70,9 @@ public class HomeFragment extends Fragment {
         imageViewArrow = (RelativeLayout) view.findViewById(R.id.arrow);
         imageViewCamera = (RelativeLayout) view.findViewById(R.id.camara);
         imageViewMyGram = (ImageView)view.findViewById(R.id.myGramImageView);
+        bottomNavigationViewEx = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
 
+        setUpBottomNavigationView();
 
         imageViewArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,6 +279,16 @@ public class HomeFragment extends Fragment {
         }catch (IndexOutOfBoundsException e){
             Log.e(TAG, "displayPhotos: IndexOutOfBoundsException " + e.getMessage());
         }
+    }
+
+
+    private  void setUpBottomNavigationView(){
+        Log.d(TAG, "setUpBottomNavigationView: HomeActivity");
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(getActivity(),getActivity() ,bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 
 }

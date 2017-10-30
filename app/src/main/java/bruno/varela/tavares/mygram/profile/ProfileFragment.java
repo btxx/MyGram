@@ -180,12 +180,12 @@ public class ProfileFragment  extends Fragment {
 
                     try{
 
-                    photo.setCaption(objectMap.get(getString(R.string.field_caption)).toString());// esta linha deu problemas
-                    photo.setTags(objectMap.get(getString(R.string.field_tags)).toString());
-                    photo.setPhoto_id(objectMap.get(getString(R.string.field_photo_id)).toString());
-                    photo.setUser_id(objectMap.get(getString(R.string.field_user_id)).toString());
-                    photo.setDate_created(objectMap.get(getString(R.string.field_date_created)).toString());
-                    photo.setImage_path(objectMap.get(getString(R.string.field_image_path)).toString());
+                    photo.setCaption(objectMap.get(mContext.getString(R.string.field_caption)).toString());// esta linha deu problemas
+                    photo.setTags(objectMap.get(mContext.getString(R.string.field_tags)).toString());
+                    photo.setPhoto_id(objectMap.get(mContext.getString(R.string.field_photo_id)).toString());
+                    photo.setUser_id(objectMap.get(mContext.getString(R.string.field_user_id)).toString());
+                    photo.setDate_created(objectMap.get(mContext.getString(R.string.field_date_created)).toString());
+                    photo.setImage_path(objectMap.get(mContext.getString(R.string.field_image_path)).toString());
 
 
                     ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -212,6 +212,9 @@ public class ProfileFragment  extends Fragment {
 
                     }catch (NullPointerException e){
                         Log.e(TAG, "onDataChange: NullPointerException " +  e.getMessage());
+                    }catch (InstantiationException e){
+                        //Ista foi eu que meti ver melhor depois
+                        Log.e(TAG, "onDataChange: InstantiationException " +  e.getMessage());
                     }
 
 
