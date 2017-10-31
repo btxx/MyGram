@@ -2,6 +2,7 @@ package bruno.varela.tavares.mygram.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -31,6 +33,8 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
 
     public static final int ACTIVITY_NUM = 0;
     public static final int  HOME_FRAGMENT = 1;
+    public static final int  CAMARA_FRAGMENT = 0;
+    public static final int  MESSAGE_FRAGMENT = 2;
 
     private Context mContext = HomeActivity.this;
 
@@ -53,6 +57,7 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
         mFrameLayout = (FrameLayout)findViewById(R.id.container);
         mRelativeLayout = (RelativeLayout)findViewById(R.id.relLayoutParent) ;
         firebaseMethods = new FirebaseMethods(mContext);
+       // hideStatusBar();
 
         setupFireBaseAuth();
 
@@ -69,6 +74,41 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
        // mAuth.signOut();
 
 
+
+    }
+
+
+    public void hideStatusBar(){
+        // If the Android version is lower than Jellybean, use this call to hide
+        // the status bar.
+        if (Build.VERSION.SDK_INT < 16) {
+            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
+
+        View decorView = this.getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        View decorView = getWindow().getDecorView();
+        if (hasFocus){
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 
@@ -125,15 +165,15 @@ public class HomeActivity extends AppCompatActivity  implements MainFeedListAdap
      *
      */
     public void goToMessageFragment(){
-        mViewPager.setCurrentItem(2);
+        mViewPager.setCurrentItem(MESSAGE_FRAGMENT);
     }
 
     public void goToCamaraFragment(){
-        mViewPager.setCurrentItem(0);
+        mViewPager.setCurrentItem(CAMARA_FRAGMENT);
     }
 
     public void goToHomeFragment(){
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(HOME_FRAGMENT);
     }
 
 

@@ -4,10 +4,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.otaliastudios.cameraview.CameraView;
 
@@ -21,25 +24,37 @@ public class CamaraFragment extends Fragment {
     private static final String TAG = "CamaraFragment";
 
     private CameraView cameraView;
+    private ViewPager.DecorView mDecorView;
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private ImageView  imageVBackArrow;
+
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        Log.d(TAG, "onCreateView: ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ");
         View view = inflater.inflate(R.layout.fragment_camara, container,false);
         cameraView = (CameraView)view.findViewById(R.id.camera);
+        imageVBackArrow = (ImageView)view.findViewById(R.id.backWhiteArrow);
 
+        imageVBackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ONONONONONO");
+                ((HomeActivity)getActivity()).goToHomeFragment();
+                
 
+            }
+        });
 
 
         return view;
     }
+
+
+
 
 
     public void hideStatusBar(){
